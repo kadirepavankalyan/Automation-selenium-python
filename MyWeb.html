@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Me</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: url('https://via.placeholder.com/1500x300') no-repeat center center;
+            background-size: cover;
+            color: #fff;
+            padding: 60px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0;
+        }
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            background-color: #555;
+        }
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 160px);
+        }
+        .login-form {
+            background-color: #fff;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        .login-form h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .login-form input[type="text"], .login-form input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .login-form input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 4px;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .login-form input[type="submit"]:hover {
+            background-color: #555;
+        }
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+        }
+        .logout-container {
+            text-align: right;
+            padding: 14px 16px;
+            background-color: #333;
+            display: none; /* Hidden by default */
+            color: white;
+        }
+        .content {
+            padding: 20px;
+            display: none; /* Hidden by default */
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td {
+            background-color: #fff;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+    <script>
+        function login(event) {
+            event.preventDefault();
+            var name = document.getElementById('name').value;
+            var password = document.getElementById('password').value;
+            var errorMessage = document.getElementById('error-message');
+            if (!name || !password) {
+                errorMessage.innerText = 'Please enter both name and password.';
+            } else {
+                errorMessage.innerText = '';
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('logout-section').style.display = 'flex';
+                document.getElementById('welcome-message').innerText = 'Welcome, ' + name + '!';
+                document.getElementById('content-section').style.display = 'block';
+            }
+        }
+
+        function logout() {
+            document.getElementById('login-section').style.display = 'flex';
+            document.getElementById('logout-section').style.display = 'none';
+            document.getElementById('welcome-message').innerText = '';
+            document.getElementById('content-section').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>About Me</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div id="login-section" class="login-container">
+        <form class="login-form" onsubmit="login(event)">
+            <h2>Login</h2>
+            <div id="error-message" class="error-message"></div>
+            <input type="text" id="name" placeholder="Name">
+            <input type="password" id="password" placeholder="Password">
+            <input type="submit" value="Login">
+        </form>
+    </div>
+    <div id="logout-section" class="logout-container">
+        <span id="welcome-message"></span>
+        <button onclick="logout()" style="margin-left: 10px; padding: 10px; border: none; border-radius: 4px; background-color: #555; color: white; cursor: pointer;">Logout</button>
+    </div>
+    <div id="content-section" class="content">
+        <section>
+            <p>
+                Welcome to my web page! For more professional details, please visit my
+                <a href="https://www.linkedin.com/in/pavan-kalyan" target="_blank">LinkedIn Profile</a>.
+            </p>
+            <h2>Contact Information</h2>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                </tr>
+                <tr>
+                    <td>Pavan</td>
+                    <td>*******8357</td>
+                </tr>
+            </table>
+            <h2>Note</h2>
+            <p>
+                Please feel free to reach out via LinkedIn for any professional inquiries or collaborations.
+            </p>
+            <h2>Additional Information</h2>
+            <p>
+                This section contains more detailed information about my background, skills, and experience.
+            </p>
+        </section>
+    </div>
+    <footer>
+        &copy; 2024 Pavan Kalyan. All rights reserved.
+    </footer>
+</body>
+</html>

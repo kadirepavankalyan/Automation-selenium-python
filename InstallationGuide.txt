@@ -1,0 +1,125 @@
+Step 1: Install Python
+Download Python:
+
+Go to the official Python website.
+Download the latest version for your operating system.
+Install Python:
+
+Run the downloaded installer.
+Make sure to check the box that says "Add Python to PATH".
+Follow the instructions in the installer.
+Verify Installation:
+
+Open a terminal (Command Prompt on Windows, Terminal on macOS/Linux).
+Type python --version to check the Python version.
+Type pip --version to ensure pip (Python package installer) is installed.
+
+Step 2: Install Selenium
+
+Install Selenium using pip:
+Open a terminal.
+Run the command: pip install selenium.
+Step 3: Install pytest
+
+Install pytest using pip:
+Open a terminal.
+Run the command: pip install pytest.
+Step 4: Install a WebDriver (e.g., ChromeDriver)
+Download ChromeDriver:
+
+Go to the ChromeDriver download page.
+Download the version that matches your installed version of Google Chrome.
+Install ChromeDriver:
+
+Extract the downloaded file.
+Move the chromedriver executable to a directory included in your system's PATH, or keep note of its location to specify it later.
+
+Step 5: Write a Selenium Test with pytest
+Create a Test File:
+
+Create a new directory for your project.
+Inside this directory, create a file named test_example.py.
+Add the Following Code to test_example.py:
+
+python
+================================================================================
+# test_example.py
+
+import pytest
+from selenium import webdriver
+
+@pytest.fixture
+def browser():
+    driver = webdriver.Chrome()  # Use the path to chromedriver if it's not in PATH
+    yield driver
+    driver.quit()
+
+def test_google_search(browser):
+    browser.get('https://www.google.com')
+
+    assert 'Google' in browser.title
+
+    search_box = browser.find_element('name', 'q')
+    search_box.send_keys('Selenium testing with pytest')
+    search_box.submit()
+
+    assert 'Selenium testing with pytest' in browser.page_source
+================================================================================
+Step 6: Run the Test
+Navigate to Your Project Directory:
+
+Open a terminal.
+Use cd to change to the directory where test_example.py is located.
+Run the Test Using pytest:
+
+Run the command: pytest test_example.py.
+Expected Output
+You should see an output similar to this:
+
+diff
+============================= test session starts ==============================
+platform win32 -- Python 3.9.1, pytest-6.2.2, py-1.10.0, pluggy-0.13.1
+collected 1 item
+
+test_example.py .                                                           [100%]
+
+============================== 1 passed in 5.03s ===============================
+Summary:
+-------
+Install Python from the official website and ensure it's added to your system PATH.
+Use pip to install Selenium and pytest.
+Download and install ChromeDriver or another WebDriver compatible with your browser.
+Write a test using Selenium and pytest in a Python file.
+Run the test using the pytest command.
+
+
+Commands to run python scripts:
+------------------------------
+Here’s a brief explanation of each of these `pytest` commands:
+1. **`pytest`**
+   - This command runs all the tests in the current directory and its subdirectories.
+   - Example:
+     ```sh
+     pytest
+     ```
+
+2. **`pytest -rA`**
+   - This command runs the tests and provides a detailed summary report at the end, including all test outcomes (like passed, failed, skipped, etc.).
+   - Example:
+     ```sh
+     pytest -rA
+     ```
+
+3. **`pytest -v`**
+   - This command runs the tests with increased verbosity, displaying each test function's name and status.
+   - Example:
+     ```sh
+     pytest -v
+     ```
+
+4. **`pytest -k`**
+   - This command runs tests that match the specified substring expression.
+   - Example:
+     ```sh
+     pytest -k "test_function_name"
+     ```
